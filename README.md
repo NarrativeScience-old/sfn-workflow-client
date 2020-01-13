@@ -11,6 +11,8 @@ Features:
 - Wait for an execution to complete
 - Fetch execution history
 
+Table of Contents:
+
 - [Installation](#installation)
 - [Guide](#guide)
 - [Development](#development)
