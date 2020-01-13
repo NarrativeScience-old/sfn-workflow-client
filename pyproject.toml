@@ -1,0 +1,29 @@
+[build-system]
+requires = ["flit_core >=2,<3"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "sfn_workflow_client"
+author = "Jonathan Drake"
+author-email = "jdrake@narrativescience.com"
+home-page = "https://github.com/NarrativeScience/sfn-workflow-client"
+license = "BSD-3-Clause"
+description-file = "README.md"
+requires = [
+    "aenum>=2.1.0,<3",
+    "arrow>=0.12.1,<1",
+    "backoff>=1.8.0,<2",
+    "boto3",
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.6,<4"
+keywords = "aws step functions,workflow"
+
+[tool.flit.sdist]
+include = ["LICENSE.md"]
+exclude = ["tests/"]
