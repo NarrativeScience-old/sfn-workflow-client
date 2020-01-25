@@ -4,15 +4,14 @@ import re
 from typing import Any, Dict, List, Optional
 
 import arrow
-import boto3
 from botocore.exceptions import ClientError
 
+from .clients import stepfunctions
 from .enums import ExecutionEventType
 from .exceptions import ExecutionDoesNotExist
 from .util import call_async, Collection
 
 EVENT_DETAILS_KEY_PATTERN = re.compile(r"EventDetails$")
-stepfunctions = boto3.client("stepfunctions")
 
 
 class ExecutionEvent:

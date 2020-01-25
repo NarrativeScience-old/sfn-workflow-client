@@ -9,8 +9,8 @@ import unittest
 import uuid
 
 import arrow
-import boto3
 
+from sfn_workflow_client.clients import stepfunctions
 from sfn_workflow_client.enums import ExecutionEventType, ExecutionStatus
 from sfn_workflow_client.exceptions import (
     ExecutionDoesNotExist,
@@ -21,7 +21,6 @@ from sfn_workflow_client.exceptions import (
 from sfn_workflow_client.workflow import Workflow
 from test_utils import async_test
 
-stepfunctions = boto3.client("stepfunctions")
 ROLE_ARN = os.environ["AWS_IAM_ROLE_ARN"]
 
 

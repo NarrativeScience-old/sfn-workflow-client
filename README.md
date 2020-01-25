@@ -63,7 +63,7 @@ To run functional tests, you need to create an AWS IAM role with permissions to:
 
 Set the following environment variables:
 
-- `AWS_ACCOUNT_NUMBER`
+- `AWS_ACCOUNT_ID`
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_DEFAULT_REGION`

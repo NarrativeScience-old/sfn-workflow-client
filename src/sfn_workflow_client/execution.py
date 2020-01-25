@@ -6,10 +6,10 @@ import uuid
 
 import arrow
 import backoff
-import boto3
 from botocore.exceptions import ClientError
 
-from .config import AWS_ACCOUNT_NUMBER
+from .clients import stepfunctions
+from .config import AWS_ACCOUNT_ID
 from .enums import COMPLETED_STATUSES, ExecutionStatus
 from .event import ExecutionEventCollection
 from .exceptions import (
@@ -22,7 +22,6 @@ from .exceptions import (
 from .util import call_async, Collection
 
 EVENT_DETAILS_KEY_PATTERN = re.compile(r"EventDetails$")
-stepfunctions = boto3.client("stepfunctions")
 
 
 class Execution:
@@ -70,7 +69,7 @@ class Execution:
     def execution_arn(self) -> str:
         """Returns the execution ARN"""
         return (
-            f"arn:aws:states:{stepfunctions.meta.region_name}:{AWS_ACCOUNT_NUMBER}"
+            f"arn:aws:states:{stepfunctions.meta.region_name}:{AWS_ACCOUNT_ID}"
             f":execution:{self.workflow.name}"
             f":{self.execution_id}"
         )
