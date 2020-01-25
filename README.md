@@ -1,6 +1,6 @@
-# sfn-workflow-client
+# sfn_workflow_client
 
-[![](https://img.shields.io/pypi/v/sfn-workflow-client.svg)](https://pypi.org/pypi/sfn-workflow-client/) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![](https://img.shields.io/pypi/v/sfn_workflow_client.svg)](https://pypi.org/pypi/sfn_workflow_client/) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 Enhanced, asyncio-compatible client for AWS Step Functions.
 
@@ -19,10 +19,10 @@ Table of Contents:
 
 ## Installation
 
-sfn-workflow-client requires Python 3.6 or above.
+sfn_workflow_client requires Python 3.6 or above.
 
 ```bash
-pip install sfn-workflow-client
+pip install sfn_workflow_client
 ```
 
 ## Guide
@@ -49,7 +49,7 @@ events = await execution.events.fetch()
 
 ## Development
 
-To develop sfn-workflow-client, install dependencies and enable the pre-commit hook:
+To develop sfn_workflow_client, install dependencies and enable the pre-commit hook:
 
 ```bash
 pip install pre-commit tox
