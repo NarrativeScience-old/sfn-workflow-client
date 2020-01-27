@@ -1,11 +1,8 @@
 """Contains a client for interacting with a workflow"""
 
-import boto3
-
-from .config import AWS_ACCOUNT_NUMBER
+from .clients import stepfunctions
+from .config import AWS_ACCOUNT_ID
 from .execution import ExecutionCollection
-
-stepfunctions = boto3.client("stepfunctions")
 
 
 class Workflow:
@@ -40,6 +37,6 @@ class Workflow:
         self.name = name
         self.executions = ExecutionCollection([self])
         self.state_machine_arn = (
-            f"arn:aws:states:{stepfunctions.meta.region_name}:{AWS_ACCOUNT_NUMBER}"
+            f"arn:aws:states:{stepfunctions.meta.region_name}:{AWS_ACCOUNT_ID}"
             f":stateMachine:{self.name}"
         )
