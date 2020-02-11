@@ -6,7 +6,6 @@ from typing import Any, Dict, List, Optional
 import arrow
 from botocore.exceptions import ClientError
 
-from .clients import stepfunctions
 from .enums import ExecutionEventType
 from .exceptions import ExecutionDoesNotExist
 from .util import call_async, Collection
@@ -117,7 +116,7 @@ class ExecutionEventCollection(Collection):
         # Create a paginator (iterator) then page through all the pages by wrapping it
         # in a list function.
         # See: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/paginators.html
-        paginator = stepfunctions.get_paginator("get_execution_history")
+        paginator = self.workflow.stepfunctions.get_paginator("get_execution_history")
         try:
             responses = await call_async(
                 list, paginator.paginate(executionArn=self.execution.execution_arn)
