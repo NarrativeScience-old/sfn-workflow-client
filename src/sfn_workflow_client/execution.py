@@ -8,7 +8,6 @@ import arrow
 import backoff
 from botocore.exceptions import ClientError
 
-from .clients import stepfunctions
 from .config import AWS_ACCOUNT_ID
 from .enums import COMPLETED_STATUSES, ExecutionStatus
 from .event import ExecutionEventCollection
@@ -69,9 +68,8 @@ class Execution:
     def execution_arn(self) -> str:
         """Returns the execution ARN"""
         return (
-            f"arn:aws:states:{stepfunctions.meta.region_name}:{AWS_ACCOUNT_ID}"
-            f":execution:{self.workflow.name}"
-            f":{self.execution_id}"
+            f"arn:aws:states:{self.workflow.stepfunctions.meta.region_name}"
+            f":{AWS_ACCOUNT_ID}:execution:{self.workflow.name}:{self.execution_id}"
         )
 
     def __str__(self) -> str:
@@ -128,7 +126,8 @@ class Execution:
         """
         try:
             response = await call_async(
-                stepfunctions.describe_execution, executionArn=self.execution_arn
+                self.workflow.stepfunctions.describe_execution,
+                executionArn=self.execution_arn,
             )
         except ClientError as e:
             if e.response["Error"]["Code"] == "ExecutionDoesNotExist":
@@ -176,7 +175,7 @@ class Execution:
             raise InvalidExecutionInputData(input_data)
         try:
             await call_async(
-                stepfunctions.start_execution,
+                self.workflow.stepfunctions.start_execution,
                 stateMachineArn=self.workflow.state_machine_arn,
                 **options,
             )
@@ -215,7 +214,9 @@ class Execution:
             options["cause"] = cause
         try:
             await call_async(
-                stepfunctions.stop_execution, executionArn=self.execution_arn, **options
+                self.workflow.stepfunctions.stop_execution,
+                executionArn=self.execution_arn,
+                **options,
             )
         except ClientError as e:
             if e.response["Error"]["Code"] == "ExecutionDoesNotExist":
@@ -324,7 +325,7 @@ class ExecutionCollection(Collection):
         # Create a paginator (iterator) then page through all the pages by wrapping it
         # in a list function.
         # See: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/paginators.html
-        paginator = stepfunctions.get_paginator("list_executions")
+        paginator = self.workflow.stepfunctions.get_paginator("list_executions")
         try:
             responses = await call_async(
                 list,

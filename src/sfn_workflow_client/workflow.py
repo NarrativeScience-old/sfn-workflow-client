@@ -1,7 +1,8 @@
 """Contains a client for interacting with a workflow"""
 
-from .clients import stepfunctions
-from .config import AWS_ACCOUNT_ID
+import boto3
+
+from .config import AWS_ACCOUNT_ID, STEPFUNCTIONS_ENDPOINT_URL
 from .execution import ExecutionCollection
 
 
@@ -28,15 +29,21 @@ class Workflow:
 
     """
 
-    def __init__(self, name: str) -> None:
+    def __init__(
+        self, name: str, stepfunctions_endpoint_url: str = STEPFUNCTIONS_ENDPOINT_URL
+    ) -> None:
         """
         Args:
-            name: Workflow (state machine) name to be used to query AWS Step Functions.
+            name: Workflow (state machine) name to be used to query AWS Step Functions
+            stepfunctions_endpoint_url: URL for making requests to the Step Functions API
 
         """
         self.name = name
+        self.stepfunctions = boto3.client(
+            "stepfunctions", endpoint_url=stepfunctions_endpoint_url
+        )
         self.executions = ExecutionCollection([self])
         self.state_machine_arn = (
-            f"arn:aws:states:{stepfunctions.meta.region_name}:{AWS_ACCOUNT_ID}"
+            f"arn:aws:states:{self.stepfunctions.meta.region_name}:{AWS_ACCOUNT_ID}"
             f":stateMachine:{self.name}"
         )

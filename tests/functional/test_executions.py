@@ -10,7 +10,6 @@ import uuid
 
 import arrow
 
-from sfn_workflow_client.clients import stepfunctions
 from sfn_workflow_client.enums import ExecutionEventType, ExecutionStatus
 from sfn_workflow_client.exceptions import (
     ExecutionDoesNotExist,
@@ -51,7 +50,7 @@ class WorkflowClientFunctionalTestCase(unittest.TestCase):
         This creates a new state machine.
         """
         cls.workflow = Workflow(f"test-{uuid.uuid4()}")
-        response = stepfunctions.create_state_machine(
+        response = cls.workflow.stepfunctions.create_state_machine(
             name=cls.workflow.name,
             definition=json.dumps(cls.STATE_MACHINE_DEFINITION),
             roleArn=ROLE_ARN,
@@ -62,7 +61,7 @@ class WorkflowClientFunctionalTestCase(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         """Clean up after test cases finish"""
-        response = stepfunctions.delete_state_machine(
+        response = cls.workflow.stepfunctions.delete_state_machine(
             stateMachineArn=cls.workflow.state_machine_arn
         )
         logging.debug(response)
