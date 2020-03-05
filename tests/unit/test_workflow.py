@@ -3,6 +3,7 @@
 import os
 import unittest
 
+from sfn_workflow_client.config import AWS_ACCOUNT_ID
 from sfn_workflow_client.workflow import Workflow
 
 
@@ -15,7 +16,7 @@ class WorkflowUnitTests(unittest.TestCase):
         self.assertEqual(workflow.name, "test")
         self.assertEqual(
             workflow.state_machine_arn,
-            f"arn:aws:states:{os.environ.get('AWS_DEFAULT_REGION')}:{os.environ.get('AWS_ACCOUNT_ID')}:stateMachine:test",
+            f"arn:aws:states:{os.environ.get('AWS_DEFAULT_REGION')}:{AWS_ACCOUNT_ID}:stateMachine:test",
         )
         self.assertEqual(len(workflow.executions), 0)
 
