@@ -1,6 +1,6 @@
 # sfn_workflow_client
 
-[![](https://img.shields.io/pypi/v/sfn_workflow_client.svg)](https://pypi.org/pypi/sfn_workflow_client/) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![CircleCI](https://circleci.com/gh/NarrativeScience/sfn-workflow-client/tree/master.svg?style=shield)](https://circleci.com/gh/NarrativeScience/sfn-workflow-client/tree/master) [![](https://img.shields.io/pypi/v/sfn_workflow_client.svg)](https://pypi.org/pypi/sfn_workflow_client/) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 Enhanced, asyncio-compatible client for AWS Step Functions.
 
