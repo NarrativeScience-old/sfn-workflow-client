@@ -3,9 +3,10 @@ import os
 
 import boto3
 
-AWS_ACCOUNT_ID = os.environ.get(
-    "AWS_ACCOUNT_ID", boto3.client("sts").get_caller_identity()["Account"]
-)
+try:
+    AWS_ACCOUNT_ID = os.environ["AWS_ACCOUNT_ID"]
+except KeyError:
+    AWS_ACCOUNT_ID = boto3.client("sts").get_caller_identity()["Account"]
 
 # URL for making requests to the Step Functions API. You would most likely only set
 # this in order to hit the local py2sfn mock server.
