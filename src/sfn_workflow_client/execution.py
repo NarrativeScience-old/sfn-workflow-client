@@ -1,5 +1,6 @@
 """Contains classes related to workflow executions"""
 import json
+import logging
 import re
 from typing import Any, Dict, List, Optional, Set
 import uuid
@@ -285,7 +286,9 @@ class Execution:
             on_giveup=_on_giveup,
         )
         async def _poll(execution: Execution):
-            return await self.fetch()
+            response = self.fetch()
+            logging.debug(f"Poll Response: {response}")
+            return await response
 
         # NB: only reason for passing the execution is so we have access to its
         # attributes if an exception arises in the backoff handler.
