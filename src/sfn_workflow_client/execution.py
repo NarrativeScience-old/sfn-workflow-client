@@ -286,9 +286,9 @@ class Execution:
             on_giveup=_on_giveup,
         )
         async def _poll(execution: Execution):
-            response = self.fetch()
+            response = await self.fetch()
             logging.debug(f"Poll Response: {response}")
-            return await response
+            return response
 
         # NB: only reason for passing the execution is so we have access to its
         # attributes if an exception arises in the backoff handler.
