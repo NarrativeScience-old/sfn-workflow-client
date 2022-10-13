@@ -64,7 +64,7 @@ class PollForExecutionStatusTimedOut(WorkflowClientError):
 
         """
         self.details = details
-        execution, = details["args"]
+        (execution,) = details["args"]
         super().__init__(
             f"{execution} failed to converge to {statuses}"
             f" after {details['elapsed']} seconds"
