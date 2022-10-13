@@ -21,6 +21,7 @@ from sfn_workflow_client.workflow import Workflow
 from ..test_utils import async_test
 
 ROLE_ARN = os.environ["AWS_IAM_ROLE_ARN"]
+print(f"LOOK HERE: {ROLE_ARN}")
 
 
 def without_trace(data):
