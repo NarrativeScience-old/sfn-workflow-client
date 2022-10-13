@@ -285,7 +285,6 @@ jobs:
             - circleci-cli/install
             - restore-test-cache
             - poetry-configure
-            - bump-branch-version
             - run:
                 command: poetry install
                 name: Install dependencies
