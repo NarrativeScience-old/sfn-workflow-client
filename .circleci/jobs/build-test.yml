@@ -16,14 +16,14 @@ steps:
   - run:
       name: Build artifact with Poetry
       command: poetry build
-  - run:
-      name: Run commit hooks
-      command: |
-        poetry run pre-commit install
-        poetry run pre-commit run \
-          --source "origin/${GITHUB_PR_BASE_BRANCH}" \
-          --origin "origin/${CIRCLE_BRANCH}" \
-          --show-diff-on-failure
+#  - run:
+#      name: Run commit hooks
+#      command: |
+#        poetry run pre-commit install
+#        poetry run pre-commit run \
+#          --source "origin/${GITHUB_PR_BASE_BRANCH}" \
+#          --origin "origin/${CIRCLE_BRANCH}" \
+#          --show-diff-on-failure
   - run:
       name: Run tests
       command: |
