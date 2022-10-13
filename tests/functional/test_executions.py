@@ -49,7 +49,6 @@ class WorkflowClientFunctionalTestCase(unittest.TestCase):
 
         This creates a new state machine.
         """
-        print(f"LOOK HERE: {ROLE_ARN}")
         cls.workflow = Workflow(f"test-{uuid.uuid4()}")
         response = cls.workflow.stepfunctions.create_state_machine(
             name=cls.workflow.name,
