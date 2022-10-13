@@ -4,11 +4,11 @@ import unittest
 from unittest.mock import patch
 
 import arrow
+from test_utils import async_test, create_future_method
 
 from sfn_workflow_client.enums import ExecutionStatus
 from sfn_workflow_client.exceptions import InvalidExecutionInputData
 from sfn_workflow_client.workflow import Workflow
-from test_utils import async_test, create_future_method
 
 
 class ExecutionUnitTests(unittest.TestCase):

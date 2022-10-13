@@ -9,13 +9,10 @@ import-order-style = google
 # Packages added in this list should be added to the setup.cfg file as well
 application-import-names =
     sfn_workflow_client
-    test_utils
 exclude =
     *vendor*
     .venv
     .env
-    .pants.d
-    .pantscache
     .git
     __init__.py
     setup.py

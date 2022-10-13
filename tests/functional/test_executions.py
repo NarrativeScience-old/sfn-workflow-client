@@ -9,6 +9,7 @@ import unittest
 import uuid
 
 import arrow
+from test_utils import async_test
 
 from sfn_workflow_client.enums import ExecutionEventType, ExecutionStatus
 from sfn_workflow_client.exceptions import (
@@ -18,7 +19,6 @@ from sfn_workflow_client.exceptions import (
     WorkflowDoesNotExist,
 )
 from sfn_workflow_client.workflow import Workflow
-from test_utils import async_test
 
 ROLE_ARN = os.environ["AWS_IAM_ROLE_ARN"]
 
