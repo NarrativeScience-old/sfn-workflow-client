@@ -348,7 +348,7 @@ workflows:
                 context: opensource
                 filters:
                     branches:
-                        only: main
+                        only: master
     pull-request-tests:
         jobs:
             - build-test:
@@ -356,13 +356,13 @@ workflows:
                 filters:
                     branches:
                         ignore:
-                            - main
+                            - master
             - send-slack-on-pr-success:
                 context: lexio-package
                 filters:
                     branches:
                         ignore:
-                            - main
+                            - master
                 requires:
                     - build-test
 

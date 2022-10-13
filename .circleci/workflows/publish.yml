@@ -3,4 +3,4 @@ jobs:
       context: opensource
       filters:
         branches:
-          only: main
+          only: master
