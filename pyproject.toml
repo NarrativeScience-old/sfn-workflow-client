@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sfn_workflow_client"
-version = "1.0.0"
+version = "1.1.0"
 description = "Enhanced, asyncio-compatible client for AWS Step Functions."
 authors = ["Jonathan Drake <jdrake@narrativescience.com>"]
 license = "BSD-3-Clause"
